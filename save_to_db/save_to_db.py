@@ -6,8 +6,8 @@ table = dynamodb.Table('485_test')
 
 
 def lambda_handler(event, context):
-    last_name = event['key']
-    first_name = event['value']
+    last_name = event['lName']
+    first_name = event['fName']
 
     with table.batch_writer() as batch:
         batch.put_item(
