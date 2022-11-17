@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World</title>
+        <style>
+        body {
+            background-color: #232F3E;
+            }
+        label, button {
+            color: #FF9900;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            margin-left: 40px;
+            }
+        input {
+            color: #232F3E;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            margin-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript" src="scripts.js"></script>
+        <form>
+            <label>First Name :</label>
+            <input type="text" id="Pt1Line1b_GivenName[0]" class="page1" name="fName">
+            <label>Last Name :</label>
+            <input type="text" id="Pt1Line1a_FamilyName[0]" class="page1" name="lName">
+            <!-- set button onClick method to call function we defined passing input values as parameters -->
+    <!--        <button type="button" onclick="callAPI('Pt1Line1b_GivenName[0]',document.getElementById('fName').value)">Save to Database</button>-->
+            <button type="button" onclick="storeValues()">Save to Database</button>
+<!--            <button type="button" id="savetodb">Save to Database</button>-->
+            <button type="button" onclick="generatePDF()">Generate PDF</button>
+        </form>
+    </body>
+</html>
