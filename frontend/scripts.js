@@ -1,10 +1,10 @@
-const inputArr = [];
 window.onload=function(){
     const saveButton = document.getElementById("save");
     saveButton.addEventListener("click", storeValues);
 }
 console.log("scripts.js loaded");
 function storeValues() {
+    const inputArr = [];
     console.log("save to db clicked");
     const pageOneContents = document.getElementsByClassName('page1');
     for (const element of pageOneContents){
