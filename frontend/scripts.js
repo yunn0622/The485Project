@@ -34,6 +34,7 @@ function callAPI(arr) {
 //        .then(result => alert(JSON.parse(result).body))
         .catch(error => console.log('error', error));
     });
+//    alert("Successfully saved to the database")
 };
 
 async function generatePDF(){
@@ -41,14 +42,14 @@ async function generatePDF(){
         method: 'GET',
         redirect: 'follow'
     };
-    var downloadURL
+    var downloadURL;
     try{
         let response = await fetch("https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev", requestOptions);
         let data = await response.text();
         downloadURL = JSON.parse(data).url;
-        alert(JSON.parse(data).body)
+        alert(JSON.parse(data).body);
     }catch(error){
     console.log(error);
     }
-    window.location.assign(downloadURL)
+    window.location.assign(downloadURL);
 };
