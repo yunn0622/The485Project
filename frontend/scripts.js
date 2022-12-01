@@ -36,29 +36,19 @@ function callAPI(arr) {
     });
 };
 
-//TODO: fix the result message popping multiple times, fix the doulbe saving issue
-////<!--            var raw = JSON.stringify({"fName":fName,"lName":lName});-->
-//    // create a JSON object with parameters for API call and store in a variable
-//    var requestOptions = {
-//        method: 'POST',
-//        headers: myHeaders,
-//        body: raw,
-//        redirect: 'follow'
-//    };
-//    // make API call with parameters and use promises to get response
-//    fetch("https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev", requestOptions)
-//    .then(response => response.text())
-//    .then(result => alert(JSON.parse(result).body))
-//    .catch(error => console.log('error', error));
-//}
-
-function generatePDF (){
+async function generatePDF(){
     var requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
-    fetch("https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev", requestOptions)
-    .then(response => response.text())
-    .then(result => alert(JSON.parse(result).body))
-    .catch(error => console.log('error', error));
+    var downloadURL
+    try{
+        let response = await fetch("https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev", requestOptions);
+        let data = await response.text();
+        downloadURL = JSON.parse(data).url;
+        alert(JSON.parse(data).body)
+    }catch(error){
+    console.log(error);
+    }
+    window.location.assign(downloadURL)
 };
