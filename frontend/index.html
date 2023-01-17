@@ -1,35 +1,49 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>485 Project Demo Page</title>
-        <style>
-            body {
-                background-color: #232F3E;
-                }
-            label, button {
-                color: #FF9900;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 20px;
-                margin-left: 40px;
-                }
-            input {
-                color: #232F3E;
-                font-family: Arial, Helvetica, sans-serif;
-                font-size: 20px;
-                margin-left: 20px;
-                }
-        </style>
-    </head>
-    <body>
-        <script type="text/javascript" src="scripts.js"></script>
-        <form>
-            <label>First Name :</label>
-            <input type="text" id="Pt1Line1b_GivenName[0]" class="page1" name="fName">
-            <label>Last Name :</label>
-            <input type="text" id="Pt1Line1a_FamilyName[0]" class="page1" name="lName">
-            <button type="button" id="save">Save to Database</button>
-            <button type="button" onclick="generatePDF()">Download PDF</button>
-        </form>
-    </body>
-</html>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css'
+import { Amplify, Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// <!DOCTYPE html>
+// <html>
+//     <head>
+//         <meta charset="UTF-8">
+//         <title>485 Project Demo Page</title>
+//         <style>
+//             body {
+//                 background-color: #232F3E;
+//                 }
+//             label, button {
+//                 color: #FF9900;
+//                 font-family: Arial, Helvetica, sans-serif;
+//                 font-size: 20px;
+//                 margin-left: 40px;
+//                 }
+//             input {
+//                 color: #232F3E;
+//                 font-family: Arial, Helvetica, sans-serif;
+//                 font-size: 20px;
+//                 margin-left: 20px;
+//                 }
+//         </style>
+//     </head>
+//     <body>
+//         <script type="text/javascript" src="scripts.js"></script>
+//         <form>
+//             <label>First Name :</label>
+//             <input type="text" id="Pt1Line1b_GivenName[0]" class="page1" name="fName">
+//             <label>Last Name :</label>
+//             <input type="text" id="Pt1Line1a_FamilyName[0]" class="page1" name="lName">
+//             <button type="button" id="save">Save to Database</button>
+//             <button type="button" onclick="generatePDF()">Download PDF</button>
+//         </form>
+//     </body>
+// </html>
