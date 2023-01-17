@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-react485-dev-112048-authRole",
+      "UnauthRoleArn": "arn:aws:iam::124047202968:role/amplify-react485-dev-112048-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::124047202968:role/amplify-react485-dev-112048-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-react485-dev-112048-deployment",
+      "UnauthRoleName": "amplify-react485-dev-112048-unauthRole",
+      "StackName": "amplify-react485-dev-112048",
+      "StackId": "arn:aws:cloudformation:us-west-2:124047202968:stack/amplify-react485-dev-112048/95859720-7cad-11ed-b112-0a709c9ee415",
+      "AmplifyAppId": "dv18b7l2qd6ed"
+    }
+  }
+}
