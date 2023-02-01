@@ -1,0 +1,55 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/react-485/.pnp
+/react-485.pnp.js
+
+# testing
+/react-485/coverage
+generate_pdf/pypdf2_test.py
+
+# production
+/react-485/build
+
+# misc
+/react-485/.DS_Store
+/react-485/.env.local
+/react-485/.env.development.local
+/react-485/.env.test.local
+/react-485/.env.production.local
+
+/react-485/npm-debug.log*
+/react-485/yarn-debug.log*
+/react-485/yarn-error.log*
+
+.idea
+.vscode
+485_fields.txt
+notes.txt
+/react-485/new_user_credentials.csv
+/generate_pdf/*.pdf
+/react-485/public/
+
+#amplify-do-not-edit-begin
+/react-485/amplify/\#current-cloud-backend
+/react-485/amplify/.config/local-*
+/react-485/amplify/logs
+/react-485/amplify/mock-data
+/react-485/amplify/mock-api-resources
+/react-485/amplify/backend/amplify-meta.json
+/react-485/amplify/backend/.temp
+/react-485/build/
+/react-485/dist/
+/react-485/node_modules/
+/react-485/aws-exports.js
+/react-485/awsconfiguration.json
+/react-485/amplifyconfiguration.json
+/react-485/amplifyconfiguration.dart
+/react-485/amplify-build-config.json
+/react-485/amplify-gradle-config.json
+/react-485/amplifytools.xcconfig
+/react-485/.secret-*
+**.sample
+#amplify-do-not-edit-end
+
+

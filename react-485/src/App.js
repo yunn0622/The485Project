@@ -1,78 +1,58 @@
-import React, { Component } from 'react';
+
+import React, { Component, useState } from 'react';
 import './App.css';
 import { Flex, Button, ButtonGroup, View, TextField } from '@aws-amplify/ui-react';
-import InputBox from './InputBox';
-import { fields } from './fields';
 import '@aws-amplify/ui-react/styles.css';
 import Form from './Form';
-// import axios from 'axios';
+import axios from 'axios';
 
 
+export default function App() {
+  const [input, setInput] = useState({});
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  function handleAddInput(name, inputVal){
+    setInput(()=> {
+      return{
+        ...input,
+        [name]: inputVal,
+      };
+    });
   }
 
-
-  async handleChange(event) {
-    this.setState({key: event.target.name});
-    this.setState({value: event.target.value})
-    const inputArr = []
-    
-  }
-
-  async handleSubmit(event) {
-    event.preventDefault();
-    console.log("this.state: ", this.state)
-    const key = this.state.key;
-    const value = this.state.value;
-    console.log("key:", key, "inputval: ", value)
-    const raw = JSON.stringify({"key": key, "value": value})
-    try{
-      fetch("https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev", {method: 'POST', body: raw})
-      .then(response => response.text())
-      .then(result => alert(JSON.parse(result).body))
-      .catch(error => console.log('error', error));
-    }catch(e) {
-      console.log("error: ", e)
-    };
-  }
-
-  render () {
-    const fieldsArray = fields.map((field, i) => {
-      return (
-          <InputBox 
-              key={i}
-              label={fields[i].label}
-              name={fields[i].name}
-              onChange={this.handleChange}
-              />
-      );
+  function handleSubmit() {
+    const inputData = Object.entries(input)
+    console.log(inputData)
+    inputData.map(([key, value]) => {
+      const data = {'key': key, 'value': value}
+      console.log('data ', data)
+      axios.post('https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev', data)
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
     })
-    return( 
-      <View as="form" onSubmit={this.handleSubmit}>
+  }
+
+  return(
+     <View>
         <Flex direction="column" padding="2rem" alignItems="center">
+          <Form onAddInput={handleAddInput}/>
           {/* <InputBox 
             label={fields[0].label}
-            name={fields[0].name}
-            onChange={this.handleChange}
+            // name={fields[0].name}
+            onChange={e => handleAddInput(fields[0].name, e.target.value)}
             />
           <InputBox 
             label={fields[1].label}
-            name={fields[1].name}
-            onChange={this.handleChange}
+            // name={fields[1].name}
+            onChange={e => handleAddInput(fields[1].name, e.target.value)}
             /> */}
-            { fieldsArray }
         <View direction="row">
           <ButtonGroup>
             <Button
               loadingText=""
               type="submit"
+              onClick={e => handleSubmit()}
             >
               Save
             </Button>
@@ -87,7 +67,5 @@ class App extends Component {
           </View>
         </Flex>
       </View>
-    )
-  };
-};
-export default App;
+  );
+}

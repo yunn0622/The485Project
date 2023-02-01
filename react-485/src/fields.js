@@ -1,10 +1,11 @@
 export const fields = [
     {
         label: 'Last Name',
-        attr: 'Pt1Line1a_FamilyName[0]'
+        name: 'Pt1Line1a_FamilyName[0]',
+        memo: 'hello'
     },
     {
         label: 'First Name',
-        attr: 'Pt1Line1b_GivenName[0]'
+        name: 'Pt1Line1b_GivenName[0]'
     }
 ];
