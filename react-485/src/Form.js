@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { fields } from './fields';
+import { Flex, TextField } from '@aws-amplify/ui-react';
 
-export default function Form({onAddInput}) {
-    return(
-        <>
-            <label>{fields[0].label}</label>
-            <input 
-                name={fields[0].name}
-                onChange={e =>onAddInput(fields[0].name, e.target.value)}
+export default function Form({ label, name, onAddInput }) {
+    const fieldsArray = fields.map((field, idx) => 
+        <React.Fragment key={idx}>
+            <TextField 
+                label={field.label}
+                name={field.name}
+                onChange={e =>onAddInput(field.name, e.target.value)}
+                errorMessage="There is an error"
             />
-            <label>{fields[1].label}</label>
-            <input 
-                onChange={e => onAddInput(fields[1].name, e.target.value)}
-            />
-            {/* <button onClick={() => {
-                setInput('');
-                onAddInput(input);
-            }}>add</button> */}
-        </>
-    )
-}
+        </React.Fragment>
+        
+    );
+        return (
+            <>
+                {fieldsArray}
+            </>
+        )
+};

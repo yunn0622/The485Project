@@ -1,8 +1,7 @@
 export const fields = [
     {
         label: 'Last Name',
-        name: 'Pt1Line1a_FamilyName[0]',
-        memo: 'hello'
+        name: 'Pt1Line1a_FamilyName[0]'
     },
     {
         label: 'First Name',

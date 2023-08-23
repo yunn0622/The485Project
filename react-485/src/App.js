@@ -1,5 +1,5 @@
 
-import React, { Component, useState } from 'react';
+import React, { useState, useId } from 'react';
 import './App.css';
 import { Flex, Button, ButtonGroup, View, TextField } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
@@ -9,44 +9,67 @@ import axios from 'axios';
 
 export default function App() {
   const [input, setInput] = useState({});
+  // const userId = useId();
+  const apiGatewayEndpoint = 'https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev'
 
   function handleAddInput(name, inputVal){
     setInput(()=> {
       return{
         ...input,
-        [name]: inputVal,
+        [name]: inputVal
       };
     });
   }
 
   function handleSubmit() {
-    const inputData = Object.entries(input)
-    console.log(inputData)
-    inputData.map(([key, value]) => {
-      const data = {'key': key, 'value': value}
-      console.log('data ', data)
-      axios.post('https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev', data)
-        .then(res => {
-          console.log(res);
-          console.log(res.data);
-        })
+    const inputData = Object.entries(input);
+    console.log(inputData);
+  
+    Promise.all(
+      inputData.map(([key, value]) => {
+        // why did I make uniqueID??
+        // const uniqueID = userId + key;
+        // const data = { 'ID': uniqueID, 'key': key, 'value': value };
+        const data = { 'ID': key, 'value': value };
+  
+        return axios.post(apiGatewayEndpoint, data);
+      })
+    )
+    .then(responses => {
+  
+      const successCount = responses.filter(res => res.status === 200).length;
+      const errorCount = responses.length - successCount;
+  
+      const alertMessage = `Data saved: ${successCount} items. Errors: ${errorCount} items.`;
+      alert(alertMessage);
     })
+    .catch(error => {
+      console.error('An error occurred:', error);
+      alert('An error occurred while saving data.');
+    });
   }
+
+
+  //triggers the lambda function 'generatePDF' when click 'download PDF' button
+  async function generatePDF() {
+    try {
+      const response = await axios.get(apiGatewayEndpoint
+      );
+      console.log(response.data);
+      const alertMessage = response.data['body'];
+      alert(alertMessage);
+      return response.data;
+    } catch (error) {
+      console.error('An error occurred:', error);
+      throw error;
+    }
+  }
+  
 
   return(
      <View>
-        <Flex direction="column" padding="2rem" alignItems="center">
+         <Flex direction="column" padding="2rem" alignItems="center">
           <Form onAddInput={handleAddInput}/>
-          {/* <InputBox 
-            label={fields[0].label}
-            // name={fields[0].name}
-            onChange={e => handleAddInput(fields[0].name, e.target.value)}
-            />
-          <InputBox 
-            label={fields[1].label}
-            // name={fields[1].name}
-            onChange={e => handleAddInput(fields[1].name, e.target.value)}
-            /> */}
         <View direction="row">
           <ButtonGroup>
             <Button
@@ -59,7 +82,7 @@ export default function App() {
             <Button
               gap="2rem"
               loadingText=""
-              onClick={() => alert('')}
+              onClick={e => generatePDF()}
             >
               Download PDF
             </Button>
