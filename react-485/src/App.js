@@ -55,9 +55,11 @@ export default function App() {
     try {
       const response = await axios.get(apiGatewayEndpoint
       );
-      console.log(response.data);
+      // console.log(response.data);
       const alertMessage = response.data['body'];
+      const downloadURL = response.data['url'];
       alert(alertMessage);
+      window.open(downloadURL);
       return response.data;
     } catch (error) {
       console.error('An error occurred:', error);
@@ -65,30 +67,20 @@ export default function App() {
     }
   }
   
-
-  return(
-     <View>
-         <Flex direction="column" padding="2rem" alignItems="center">
-          <Form onAddInput={handleAddInput}/>
-        <View direction="row">
-          <ButtonGroup>
-            <Button
-              loadingText=""
-              type="submit"
-              onClick={e => handleSubmit()}
-            >
-              Save
-            </Button>
-            <Button
-              gap="2rem"
-              loadingText=""
-              onClick={e => generatePDF()}
-            >
-              Download PDF
-            </Button>
-          </ButtonGroup>  
-          </View>
-        </Flex>
-      </View>
+  return (
+    <View>
+      <Flex direction="column" padding="2rem" alignItems="center">
+        <Form onAddInput={handleAddInput} />
+        <ButtonGroup>
+          <Button onClick={handleSubmit}>Save</Button>
+          <Button gap="2rem" onClick={generatePDF}>Download PDF</Button>
+        </ButtonGroup>
+      </Flex>
+    </View>
   );
+  
+
+
+
+
 }
