@@ -1,10 +1,11 @@
 
 import React, { useState, useId } from 'react';
 import './App.css';
-import { Flex, Button, ButtonGroup, View, TextField } from '@aws-amplify/ui-react';
+import { Flex, Button, View } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import Form from './Form';
 import axios from 'axios';
+import LoginButton from './LoginButton';
 
 
 export default function App() {
@@ -16,7 +17,7 @@ export default function App() {
     setInput(()=> {
       return{
         ...input,
-        [name]: inputVal
+        [name]: inputVal,
       };
     });
   }
@@ -24,22 +25,22 @@ export default function App() {
   function handleSubmit() {
     const inputData = Object.entries(input);
     console.log(inputData);
-  
+
     Promise.all(
       inputData.map(([key, value]) => {
         // why did I make uniqueID??
         // const uniqueID = userId + key;
         // const data = { 'ID': uniqueID, 'key': key, 'value': value };
         const data = { 'ID': key, 'value': value };
-  
+
         return axios.post(apiGatewayEndpoint, data);
       })
     )
     .then(responses => {
-  
+
       const successCount = responses.filter(res => res.status === 200).length;
       const errorCount = responses.length - successCount;
-  
+
       const alertMessage = `Data saved: ${successCount} items. Errors: ${errorCount} items.`;
       alert(alertMessage);
     })
@@ -55,7 +56,6 @@ export default function App() {
     try {
       const response = await axios.get(apiGatewayEndpoint
       );
-      // console.log(response.data);
       const alertMessage = response.data['body'];
       const downloadURL = response.data['url'];
       alert(alertMessage);
@@ -66,21 +66,17 @@ export default function App() {
       throw error;
     }
   }
-  
-  return (
-    <View>
-      <Flex direction="column" padding="2rem" alignItems="center">
-        <Form onAddInput={handleAddInput} />
-        <ButtonGroup>
-          <Button onClick={handleSubmit}>Save</Button>
-          <Button gap="2rem" onClick={generatePDF}>Download PDF</Button>
-        </ButtonGroup>
-      </Flex>
-    </View>
-  );
-  
 
-
-
-
-}
+    return (
+          <View>
+            <Flex direction="column" padding="2rem" alignItems="center">
+              <LoginButton />
+              <Form onAddInput={handleAddInput} />
+              <Flex direction="row" gap="1rem">
+                <Button onClick={handleSubmit}>Save</Button>
+                <Button onClick={generatePDF}>Download PDF</Button>
+              </Flex>
+            </Flex>
+          </View>
+      );
+    }
