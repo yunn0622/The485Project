@@ -6,30 +6,16 @@ table = dynamodb.Table('485_test')
 
 
 def lambda_handler(event, context):
-    key = event['key']
-    value = event['value']
+    ID = event['ID']
+    values = event['values']
 
     table.put_item(
         Item={
-            'ID': key,
-            'Name': value
+            'ID': ID,
+            'values': values
         })
 
-    # with table.batch_writer() as batch:
-    #     batch.put_item(
-    #         Item={
-    #             'ID': "Pt1Line1a_FamilyName[0]",
-    #             'Name': last_name
-    #         }
-    #     )
-    #     batch.put_item(
-    #         Item={
-    #             'ID': "Pt1Line1b_GivenName[0]",
-    #             'Name': first_name
-    #         }
-    #     )
-
     return {
-        'statusCode': 200,
-        'body': json.dumps('Successfully save to database')
+        'statusCode': 200
+        # 'body': json.dumps('Successfully save to database')
     }
