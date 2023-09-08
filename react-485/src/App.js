@@ -6,11 +6,13 @@ import '@aws-amplify/ui-react/styles.css';
 import Form from './Form';
 import axios from 'axios';
 import LoginButton from './LoginButton';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 
 export default function App() {
   const [input, setInput] = useState({});
-  // const userId = useId();
+  const { isAuthenticated, user } = useAuth0();
   const apiGatewayEndpoint = 'https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev'
 
   function handleAddInput(name, inputVal){
@@ -26,23 +28,18 @@ export default function App() {
     const inputData = Object.entries(input);
     console.log(inputData);
 
-    Promise.all(
-      inputData.map(([key, value]) => {
-        // why did I make uniqueID??
-        // const uniqueID = userId + key;
-        // const data = { 'ID': uniqueID, 'key': key, 'value': value };
-        const data = { 'ID': key, 'value': value };
+    const data = {
+        'ID': user.email,
+        'values': JSON.stringify(input)
+    };
 
-        return axios.post(apiGatewayEndpoint, data);
-      })
-    )
-    .then(responses => {
-
-      const successCount = responses.filter(res => res.status === 200).length;
-      const errorCount = responses.length - successCount;
-
-      const alertMessage = `Data saved: ${successCount} items. Errors: ${errorCount} items.`;
-      alert(alertMessage);
+    axios.post(apiGatewayEndpoint, data)
+    .then(response => {
+      if (response.status === 200) {
+        alert("Data successfully saved.");
+      } else {
+        alert("An error occurred while saving data.");
+      }
     })
     .catch(error => {
       console.error('An error occurred:', error);
@@ -54,11 +51,14 @@ export default function App() {
   //triggers the lambda function 'generatePDF' when click 'download PDF' button
   async function generatePDF() {
     try {
-      const response = await axios.get(apiGatewayEndpoint
-      );
+        const response = await axios.get(apiGatewayEndpoint, {
+          params: {
+            userId: user.email
+          }
+        });
+      console.log(response.data);
       const alertMessage = response.data['body'];
       const downloadURL = response.data['url'];
-      alert(alertMessage);
       window.open(downloadURL);
       return response.data;
     } catch (error) {
@@ -73,8 +73,8 @@ export default function App() {
               <LoginButton />
               <Form onAddInput={handleAddInput} />
               <Flex direction="row" gap="1rem">
-                <Button onClick={handleSubmit}>Save</Button>
-                <Button onClick={generatePDF}>Download PDF</Button>
+                <Button onClick={handleSubmit} disabled={!isAuthenticated}>Save</Button>
+                <Button onClick={generatePDF} disabled={!isAuthenticated}>Download PDF</Button>
               </Flex>
             </Flex>
           </View>

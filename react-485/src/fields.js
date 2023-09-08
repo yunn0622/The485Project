@@ -6,5 +6,9 @@ export const fields = [
     {
         label: 'First Name',
         name: 'Pt1Line1b_GivenName[0]'
+    },
+    {
+        label: 'Middle Name',
+        name: 'Pt1Line1c_MiddleName[0]'
     }
 ];
