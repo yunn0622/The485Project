@@ -1,0 +1,36 @@
+.form-container {
+    text-align: center;
+    margin: auto;
+}
+
+.form-part {
+    margin-bottom: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;  /* This ensures vertical alignment between label and input */
+    margin-bottom: 8px;   /* Add some space between each input */
+}
+
+.input-label {
+    width: 300px;  /* Adjust this based on your longest label */
+    margin-right: 20px; /* Space between label and input */
+}
+
+
+.amplify-text-field {
+    flex-grow: 1; /* Allow the input to take up available space */
+}
+
+.amplify-text-field input {
+    width: 600px;
+    max-width: 100%;
+}

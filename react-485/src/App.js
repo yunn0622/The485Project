@@ -1,5 +1,5 @@
 
-import React, { useState, useId } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Flex, Button, View } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
@@ -14,6 +14,9 @@ export default function App() {
   const [input, setInput] = useState({});
   const { isAuthenticated, user } = useAuth0();
   const apiGatewayEndpoint = 'https://7ctegn7d3j.execute-api.us-west-2.amazonaws.com/dev'
+  if(isAuthenticated){
+    console.log(user.sub);
+  }
 
   function handleAddInput(name, inputVal){
     setInput(()=> {
@@ -29,7 +32,7 @@ export default function App() {
     console.log(inputData);
 
     const data = {
-        'ID': user.email,
+        'ID': user.sub,
         'values': JSON.stringify(input)
     };
 
@@ -53,11 +56,10 @@ export default function App() {
     try {
         const response = await axios.get(apiGatewayEndpoint, {
           params: {
-            userId: user.email
+            userId: user.sub
           }
         });
       console.log(response.data);
-      const alertMessage = response.data['body'];
       const downloadURL = response.data['url'];
       window.open(downloadURL);
       return response.data;
@@ -80,3 +82,5 @@ export default function App() {
           </View>
       );
     }
+
+// TODO: reset button, make the inputs stay after logging out
