@@ -1,3 +1,9 @@
+.login-button-container {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    padding-bottom: 30px;
+}
 
 .form-container {
     text-align: center;
@@ -8,31 +14,37 @@
     margin-bottom: 10px;
 }
 
+
 .form-group {
     display: flex;
     text-align: center;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
+
+.form-group h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
 
 .form-group h4 {
     text-align: left;
 }
 
-
 .input-wrapper {
     display: flex;
-    align-items: center;  /* This ensures vertical alignment between label and input */
-    margin-bottom: 8px;   /* Add some space between each input */
+    align-items: center;
+    margin-bottom: 8px;
 }
 
 .input-label {
     display: block;
     text-align: left;
     padding-right: 10px;
-    width: 300px;  /* Adjust this based on your longest label */
-    margin-right: 20px; /* Space between label and input */
+    width: 300px;
+    margin-right: 20px;
 }
 
 
@@ -43,4 +55,8 @@
 .amplify-text-field input {
     width: 600px;
     max-width: 100%;
+}
+
+.lighter-text {
+    font-weight: 500;
 }

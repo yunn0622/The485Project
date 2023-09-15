@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GenderRadio({ selectedGender, onGenderChange }) {
+function GenderRadio({ selectedGender, onGenderChange, disabled }) {
   return (
     <div className="gender-radio-group">
       <label>
@@ -10,6 +10,7 @@ function GenderRadio({ selectedGender, onGenderChange }) {
           value="/M"
           checked={selectedGender === '/M'}
           onChange={onGenderChange}
+          disabled={disabled}
         />
         Male
       </label>
@@ -20,6 +21,7 @@ function GenderRadio({ selectedGender, onGenderChange }) {
           value="/F"
           checked={selectedGender === '/F'}
           onChange={onGenderChange}
+          disabled={disabled}
         />
         Female
       </label>

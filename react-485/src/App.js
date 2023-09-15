@@ -71,6 +71,7 @@ export default function App() {
     return (
           <View>
             <Flex direction="column" padding="2rem" alignItems="center">
+              <div style={{ height: '30px' }}></div>
               <LoginButton />
               <Form onAddInput={handleAddInput} input={input} />
               <Flex direction="row" gap="1rem">

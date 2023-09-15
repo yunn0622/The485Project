@@ -33,17 +33,19 @@ export default function Form({ onAddInput, input }) {
   };
 
   const renderFieldComponent = (field) => {
+    const value = isAuthenticated ? input[field.name] : '';
       if (field.type === "date") {
         return (
             <TextField
                 name={field.name}
                 type={field.type}
+                value={value}
                 placeholder="MM/DD/YYYY"
                 onChange={e => handleDateInputChange(field.name, e.target.value)}
                 disabled={!isAuthenticated}
             />
         );
-      } else if (field.type === "radio" && field.id === "gender") {
+      }else if (field.type === "radio" && field.id === "gender") {
         return(
             <GenderRadio
                 selectedGender={genderValue}
@@ -51,11 +53,14 @@ export default function Form({ onAddInput, input }) {
                 disabled={!isAuthenticated}
             />
         )
-      } else {
+      }else if (field.type === "separator") {
+        return <div style={{height: "20px"}}></div>;
+      }else {
         return (
           <TextField
             name={field.name}
             type={field.type}
+            value={value}
             onChange={e => handleFieldInput(field.name, e.target.value)}
             disabled={!isAuthenticated}
             errorMessage="There is an error"
