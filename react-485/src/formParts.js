@@ -26,17 +26,17 @@ export const formParts = [
         { id: 'middleName', label: '4.c. Middle Name', name: 'Pt1Line4c_MiddleName[0]', type: 'text' }
 
       ]
-    }
-    // {
-    //   groupName: 'Other Information About You',
-    //   note: 'NOTE: In addition to providing your actual date of birth, include any other dates of birth you have used in connection with any legal names or non-legal names in the space provided in Part 14. Additional Information.'
-    //   fields: [
-    //     { id: 'dateOfBirth', label: 'Date of Birth', name: 'Pt1Line5_DateofBirth[0]', type: 'text' },
-    //     { id: 'sex', label: 'Sex', name: '', type: 'text' },
-    //     { id: 'cityOfBirth', label: 'City of Town of Birth', name: 'Pt1Line6_CityOrTown[0]', type: 'text' }
+    },
+     {
+       groupName: 'Other Information About You',
+       note: 'NOTE: In addition to providing your actual date of birth, include any other dates of birth you have used in connection with any legal names or non-legal names in the space provided in Part 14. Additional Information.',
+       fields: [
+         { id: 'dob', label: '5. Date of Birth (mm/dd/yyyy)', name: 'Pt1Line5_DateofBirth[0]', type: 'date' },
+         { id: 'gender', label: '6. Sex', name: 'gender', type: 'radio' },
+         { id: 'cityOfBirth', label: '7. City of Town of Birth', name: 'Pt1Line6_CityOrTown[0]', type: 'text' }
 
-    //   ]
-    // }
+       ]
+     }
   ]
 }
 ];

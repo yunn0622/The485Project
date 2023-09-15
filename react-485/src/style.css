@@ -1,3 +1,4 @@
+
 .form-container {
     text-align: center;
     margin: auto;
@@ -9,10 +10,16 @@
 
 .form-group {
     display: flex;
+    text-align: center;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 30px;
 }
+
+.form-group h4 {
+    text-align: left;
+}
+
 
 .input-wrapper {
     display: flex;
@@ -21,6 +28,9 @@
 }
 
 .input-label {
+    display: block;
+    text-align: left;
+    padding-right: 10px;
     width: 300px;  /* Adjust this based on your longest label */
     margin-right: 20px; /* Space between label and input */
 }
