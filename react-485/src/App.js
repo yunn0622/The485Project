@@ -73,6 +73,9 @@ export default function App() {
             <Flex direction="column" padding="2rem" alignItems="center">
               <div style={{ height: '30px' }}></div>
               <LoginButton />
+              <div className="front-page-container">
+                <h1 className="app-title">Form 485 Generator</h1>
+               </div>
               <Form onAddInput={handleAddInput} input={input} />
               <Flex direction="row" gap="1rem">
                 <Button onClick={handleSubmit} disabled={!isAuthenticated}>Save</Button>
