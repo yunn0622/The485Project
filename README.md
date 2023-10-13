@@ -13,4 +13,4 @@ Scalability and Performance: By leveraging AWS infrastructure, ensure that the a
 
 ### Architecture Diagram
 
-![](/the_485_project/485_architecture_diagram.png)
+![-](485_architecture_diagram.png)
