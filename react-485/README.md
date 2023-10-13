@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+#Form 485 Generator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##Project Overview
 
-## Available Scripts
+###Purpose
 
-In the project directory, you can run:
+The primary objective of this project is to streamline and digitalize the process of capturing and managing user data in a structured form format. Leveraging modern web technologies and cloud services, the platform aims to:
+User Authentication and Security: With the integration of Auth0, ensure that each user's data is secure and can only be accessed by authenticated individuals.
+User-Friendly Data Input: Through a responsive web interface, users can seamlessly fill out complex forms and intuitive UI components.
+Data Persistence and Retrieval: Utilize AWS services such as Lambda, DynamoDB, and S3 to securely store and retrieve user input data, ensuring durability and high availability.
+On-Demand PDF Form Generation: After saving their data, users have the option to generate a populated PDF form by pressing the ‘Download PDF' button. This provides them with a filled-out version of the form that maintains the standardized format and can be readily shared or printed.
+Scalability and Performance: By leveraging AWS infrastructure, ensure that the application can handle varying loads, from a few users to thousands, without compromising on performance or user experience.
 
-### `npm start`
+###Architecture Diagram
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![](/Users/YK/Desktop/YK_projects/the_485_project/485 architecture diagram.png)
